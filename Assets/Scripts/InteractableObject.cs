@@ -1,105 +1,82 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 public class InteractableObject : MonoBehaviour
 {
     [Header("Object Settings")]
     [SerializeField] private int pointsValue = 1;
-    [SerializeField] private float snapDistance = 0.1f;
+    [SerializeField] private float snapDistance = 0.5f;
     
     [Header("Visual Feedback")]
     [SerializeField] private Color highlightColor = Color.yellow;
     [SerializeField] private Color wrongPositionColor = Color.red;
     
-    private Vector3 _originalPosition;
-    private Quaternion _originalRotation;
-    private bool _isInCorrectPosition = true;
-    [SerializeField] private bool _isDragging;
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private bool isInCorrectPosition = true;
+    private bool isDragging = false;
     
-    private List<Renderer> _objRenderers = new();
-    private Color[] _originalColors;
-    private Material _outlineMaterial;
+    private List<Renderer> objRenderers = new List<Renderer>();
+    private Color[] originalColors;
 
-    private void Awake()
+    void Awake()
     {
-        GetComponentsInChildren(true, _objRenderers);
-        _originalColors = new Color[_objRenderers.Count];
-        for (int i = 0; i < _objRenderers.Count; i++)
+        GetComponentsInChildren(true, objRenderers);
+        originalColors = new Color[objRenderers.Count];
+        for (int i = 0; i < objRenderers.Count; i++)
         {
-            _originalColors[i] = _objRenderers[i].material.color;
+            originalColors[i] = objRenderers[i].material.color;
         }
-
-        // Store original transform
-        _originalPosition = transform.position;
-        _originalRotation = transform.rotation;
+        
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        
+        // Verify setup
+        Collider col = GetComponent<Collider>();
+        if (col == null)
+        {
+            Debug.LogError($"{gameObject.name} missing Collider!");
+        }
+        else if (col.isTrigger)
+        {
+            Debug.LogWarning($"{gameObject.name} collider is Trigger - should be solid!");
+        }
     }
 
-    private void OnMouseEnter()
+    // Called by MouseInteractionManager
+    public void OnHoverEnter()
     {
-        if (!GameManager.Instance.IsGameActive()) return;
-        if (!_isInCorrectPosition && _objRenderers.Count > 0)
+        if (!isInCorrectPosition && objRenderers.Count > 0)
         {
-            foreach (Renderer objRenderer in _objRenderers)
+            foreach (Renderer objRenderer in objRenderers)
             {
                 objRenderer.material.color = highlightColor;
             }
         }
     }
 
-    private void OnMouseExit()
+    public void OnHoverExit()
     {
-        if (!_isDragging)
+        if (!isDragging)
         {
             UpdateVisualState();
         }
     }
 
-    private void OnMouseDown()
+    public void OnDragStart()
     {
-        if (!GameManager.Instance.IsGameActive()) return;
-        if (!_isInCorrectPosition)
+        if (!isInCorrectPosition)
         {
-            _isDragging = true;
+            isDragging = true;
         }
     }
 
-    private void OnMouseUp()
+    public void OnDragUpdate(Ray ray)
     {
-        if (!_isDragging) return;
-        
-        _isDragging = false;
-        
-        // Check if placed correctly
-        float distance = Vector3.Distance(transform.position, _originalPosition);
-        
-        if (distance <= snapDistance)
-        {
-            // Snap to correct position
-            transform.position = _originalPosition;
-            transform.rotation = _originalRotation;
-            _isInCorrectPosition = true;
-            
-            GameManager.Instance.AddScore(pointsValue);
-            UpdateVisualState();
-            
-            Debug.Log($"Fixed {gameObject.name}!");
-        }
-        else
-        {
-            UpdateVisualState();
-        }
-    }
+        if (!isDragging) return;
 
-    private void OnMouseDrag()
-    {
-        if (!_isDragging) return;
-
-        if (Camera.main == null) return;
-        
-        // Simple drag along camera plane
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane dragPlane = new(Camera.main.transform.forward, transform.position);
+        Plane dragPlane = new Plane(Camera.main.transform.forward, transform.position);
         
         if (dragPlane.Raycast(ray, out float distance))
         {
@@ -108,43 +85,68 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
+    public void OnDragEnd()
+    {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        
+        float distance = Vector3.Distance(transform.position, originalPosition);
+        
+        if (distance <= snapDistance)
+        {
+            transform.position = originalPosition;
+            transform.rotation = originalRotation;
+            isInCorrectPosition = true;
+            
+            GameManager.Instance.AddScore(pointsValue);
+            UpdateVisualState();
+            
+            Debug.Log($"✓ Fixed {gameObject.name}!");
+        }
+        else
+        {
+            UpdateVisualState();
+        }
+    }
+
     public void MoveToRandomPosition(Vector3 offset)
     {
-        if (_isInCorrectPosition)
+        if (isInCorrectPosition)
         {
-            _isInCorrectPosition = false;
-            transform.position = _originalPosition + offset;
+            isInCorrectPosition = false;
+            transform.position = originalPosition + offset;
             
-            // Optional: add slight rotation
-            transform.rotation = _originalRotation * Quaternion.Euler(
+            transform.rotation = originalRotation * Quaternion.Euler(
                 Random.Range(-15f, 15f),
                 Random.Range(-15f, 15f),
                 Random.Range(-15f, 15f)
             );
             
             UpdateVisualState();
-            Debug.Log($"Ghost moved {gameObject.name}!");
+            Debug.Log($"👻 Ghost moved {gameObject.name}!");
         }
     }
 
     private void UpdateVisualState()
     {
-        if (_objRenderers.Count == 0) return;
-        if (_isInCorrectPosition)
+        if (objRenderers.Count == 0) return;
+        
+        if (isInCorrectPosition)
         {
-            for (int i = 0; i < _objRenderers.Count; i++)
+            for (int i = 0; i < objRenderers.Count; i++)
             {
-                _objRenderers[i].material.color = _originalColors[i];
+                objRenderers[i].material.color = originalColors[i];
             }
         }
         else
         {
-            for (int i = 0; i < _objRenderers.Count; i++)
+            foreach (Renderer objRenderer in objRenderers)
             {
-                _objRenderers[i].material.color = wrongPositionColor;
+                objRenderer.material.color = wrongPositionColor;
             }
         }
     }
 
-    public bool IsInCorrectPosition() => _isInCorrectPosition;
+    public bool IsInCorrectPosition() => isInCorrectPosition;
 }
