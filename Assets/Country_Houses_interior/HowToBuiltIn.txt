@@ -1,0 +1,1 @@
+To convert to the built-in version, change material shader to use Standard. Remove URP package from package manager.

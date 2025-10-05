@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7fdc4160cd0edc44f9b62832e8d205d7
+timeCreated: 1508686300
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/Car/El_Redneck_Broken.prefab
+  uploadId: 573469

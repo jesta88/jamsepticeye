@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b60a9fd2737a45b4d99d215090d8fcdc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: '{"GUIDArray":["862bdb65b200b804cb75be60946981ec","b1c34152ab17e6248b91e3ecf520e90a","",""]}'
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Materials/WoodFloor_Master.mat
+  uploadId: 573469

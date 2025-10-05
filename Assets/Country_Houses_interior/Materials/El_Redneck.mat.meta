@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0a941203a0e23b74abb8d104374488b4
+timeCreated: 1508686138
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Materials/El_Redneck.mat
+  uploadId: 573469

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d9d54507deb34a84eaa390e316aa031a
+timeCreated: 1508687427
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/Car/Tire_Stack.prefab
+  uploadId: 573469

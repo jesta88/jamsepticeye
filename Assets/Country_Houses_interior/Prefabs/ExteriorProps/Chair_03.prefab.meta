@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 53f2cb17d25894243be13a7079eea58d
+timeCreated: 1509295056
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/ExteriorProps/Chair_03.prefab
+  uploadId: 573469

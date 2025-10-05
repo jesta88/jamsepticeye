@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f16201f634ad63e41aa42ec33f1bf76e
+timeCreated: 1509294835
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Materials/Assets.mat
+  uploadId: 573469

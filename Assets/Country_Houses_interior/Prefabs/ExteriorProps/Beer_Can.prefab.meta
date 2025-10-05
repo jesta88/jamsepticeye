@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 06b52d5a086d4db4fbe740da2d1ba0af
+timeCreated: 1509295056
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/ExteriorProps/Beer_Can.prefab
+  uploadId: 573469

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6519c90b20ca4654a80f26d94a629d4d
+timeCreated: 1506851629
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/Plants/Plant_Small_05.prefab
+  uploadId: 573469

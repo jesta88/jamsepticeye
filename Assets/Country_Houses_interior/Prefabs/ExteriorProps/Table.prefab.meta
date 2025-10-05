@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0616ab9a1b01a6947981dbff4e41163f
+timeCreated: 1509295056
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/ExteriorProps/Table.prefab
+  uploadId: 573469

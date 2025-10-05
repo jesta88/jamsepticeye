@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 32d44c7a7168d9648a7c921e6b5102a7
+timeCreated: 1508686300
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 155343
+  packageName: Country houses with interiors
+  packageVersion: 1.1
+  assetPath: Assets/Country_Houses_interior/Prefabs/Car/El_Redneck.prefab
+  uploadId: 573469
